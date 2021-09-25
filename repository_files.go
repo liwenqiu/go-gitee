@@ -66,7 +66,7 @@ type CreateFileOptions struct {
 }
 
 type FileOperationResponse struct {
-	Content struct {
+	Content *struct {
 		Name        string `json:"name"`
 		Path        string `json:"path"`
 		Size        int    `json:"size"`
@@ -76,24 +76,24 @@ type FileOperationResponse struct {
 		HTMLURL     string `json:"html_url"`
 		DownloadURL string `json:"download_url"`
 	} `json:"content"`
-	Commit struct {
+	Commit *struct {
 		SHA    string `json:"sha"`
-		Author struct {
+		Author *struct {
 			Name  string    `json:"name"`
 			Date  time.Time `json:"date"`
 			Email string    `json:"email"`
 		} `json:"author"`
-		Committer struct {
+		Committer *struct {
 			Name  string    `json:"name"`
 			Date  time.Time `json:"date"`
 			Email string    `json:"email"`
 		} `json:"committer"`
 		Message string `json:"message"`
-		Tree    struct {
+		Tree    *struct {
 			SHA string `json:"sha"`
 			URL string `json:"url"`
 		} `json:"tree"`
-		Parents []struct {
+		Parents []*struct {
 			SHA string `json:"sha"`
 			URL string `json:"url"`
 		} `json:"parents"`

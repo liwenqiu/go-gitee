@@ -21,24 +21,24 @@ type Commit struct {
 	SHA         string `json:"sha"`
 	HTMLURL     string `json:"html_url"`
 	CommentsURL string `json:"comment_url"`
-	Commit      struct {
-		Author struct {
+	Commit      *struct {
+		Author *struct {
 			Name  string    `json:"name"`
-			Date  time.Time `json:"date"`
+			Date  *time.Time `json:"date"`
 			Email string    `json:"email"`
 		} `json:"author"`
-		Committer struct {
+		Committer *struct {
 			Name  string    `json:"name"`
-			Date  time.Time `json:"date"`
+			Date  *time.Time `json:"date"`
 			Email string    `json:"email"`
 		} `json:"committer"`
 		Message string `json:"message"`
-		Tree    struct {
+		Tree    *struct {
 			SHA string `json:"sha"`
 			URL string `json:"url"`
 		} `json:"tree"`
 	} `json:"commit"`
-	Author struct {
+	Author *struct {
 		ID                int    `json:"id"`
 		Login             string `json:"login"`
 		Name              string `json:"name"`
@@ -57,7 +57,7 @@ type Commit struct {
 		ReceivedEventsURL string `json:"received_events_url"`
 		Type              string `json:"type"`
 	} `json:"author"`
-	Committer struct {
+	Committer *struct {
 		ID                int    `json:"id"`
 		Login             string `json:"login"`
 		Name              string `json:"name"`
@@ -76,17 +76,17 @@ type Commit struct {
 		ReceivedEventsURL string `json:"received_events_url"`
 		Type              string `json:"type"`
 	} `json:"committer"`
-	Parents []struct {
+	Parents []*struct {
 		SHA string `json:"sha"`
 		URL string `json:"url"`
 	} `json:"parents"`
-	Stats struct {
+	Stats *struct {
 		ID        string `json:"id"`
 		Additions int    `json:"additions"`
 		Deletions int    `json:"deletions"`
 		Total     int    `json:"total"`
 	} `json:"stats"`
-	Files []struct {
+	Files []*struct {
 		SHA        string `json:"sha"`
 		Filename   string `json:"filename"`
 		Status     string `json:"status"`

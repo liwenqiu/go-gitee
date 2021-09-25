@@ -13,7 +13,7 @@ type TagsService struct {
 type Tag struct {
 	Name    string `json:"name"`
 	Message string `json:"message"`
-	Commit  struct {
+	Commit  *struct {
 		SHA  string    `json:"sha"`
 		Date time.Time `json:"date"`
 	} `json:"commit"`

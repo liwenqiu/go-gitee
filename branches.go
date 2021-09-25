@@ -42,38 +42,38 @@ func (s *BranchesService) ListBranches(owner, repo string) ([]*BranchRef, *Respo
 
 type Branch struct {
 	Name   string `json:"name"`
-	Commit struct {
+	Commit *struct {
 		SHA    string `json:"sha"`
 		URL    string `json:"url"`
-		Commit struct {
-			Author struct {
-				Name  string    `json:"name"`
-				Date  time.Time `json:"date"`
-				Email string    `json:"email"`
+		Commit *struct {
+			Author *struct {
+				Name  string     `json:"name"`
+				Date  *time.Time `json:"date"`
+				Email string     `json:"email"`
 			} `json:"author"`
 			URL     string `json:"url"`
 			Message string `json:"message"`
-			Tree    struct {
+			Tree    *struct {
 				SHA string `json:"sha"`
 				URL string `json:"url"`
 			} `json:"tree"`
-			Committer struct {
-				Name  string    `json:"name"`
-				Date  time.Time `json:"date"`
-				Email string    `json:"email"`
+			Committer *struct {
+				Name  string     `json:"name"`
+				Date  *time.Time `json:"date"`
+				Email string     `json:"email"`
 			} `json:"committer"`
 		} `json:"commit"`
-		Author struct {
+		Author *struct {
 			AvatarURL string `json:"avatar_url"`
 			URL       string `json:"url"`
 			ID        int    `json:"id"`
 			Login     string `json:"login"`
 		} `json:"author"`
-		Parents []struct {
+		Parents []*struct {
 			SHA string `json:"sha"`
 			URL string `json:"url"`
 		} `json:"parents"`
-		Committer struct {
+		Committer *struct {
 			AvatarURL string `json:"avatar_url"`
 			URL       string `json:"url"`
 			ID        int    `json:"id"`
