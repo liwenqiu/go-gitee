@@ -80,12 +80,12 @@ type FileOperationResponse struct {
 		SHA    string `json:"sha"`
 		Author *struct {
 			Name  string    `json:"name"`
-			Date  time.Time `json:"date"`
+			Date  *time.Time `json:"date"`
 			Email string    `json:"email"`
 		} `json:"author"`
 		Committer *struct {
 			Name  string    `json:"name"`
-			Date  time.Time `json:"date"`
+			Date  *time.Time `json:"date"`
 			Email string    `json:"email"`
 		} `json:"committer"`
 		Message string `json:"message"`

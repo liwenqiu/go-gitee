@@ -15,7 +15,7 @@ type Tag struct {
 	Message string `json:"message"`
 	Commit  *struct {
 		SHA  string    `json:"sha"`
-		Date time.Time `json:"date"`
+		Date *time.Time `json:"date"`
 	} `json:"commit"`
 }
 
