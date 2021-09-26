@@ -49,12 +49,6 @@ func (s *RepositoryFilesService) GetFile(owner, repo, path string, opts *GetFile
 	return f, resp, err
 }
 
-type FileInfo struct {
-	FilePath   string `json:"file_path"`
-	FileName   string `json:"file_name"`
-	BranchName string `json:"branch_name"`
-}
-
 type CreateFileOptions struct {
 	Content        string `json:"content"`
 	Message        string `json:"message"`

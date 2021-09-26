@@ -50,6 +50,7 @@ type Client struct {
 	// Services used for talking to different parts of the TGit API.
 	Branches        *BranchesService
 	Commits         *CommitsService
+	Repositories    *RepositoriesService
 	RepositoryFiles *RepositoryFilesService
 	Tags            *TagsService
 }
@@ -103,6 +104,7 @@ func newClient(hc *retryablehttp.Client) (*Client, error) {
 
 	c.Branches = &BranchesService{client: c}
 	c.Commits = &CommitsService{client: c}
+	c.Repositories = &RepositoriesService{client: c}
 	c.RepositoryFiles = &RepositoryFilesService{client: c}
 	c.Tags = &TagsService{client: c}
 
