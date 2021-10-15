@@ -29,6 +29,13 @@ const (
 	privateToken
 )
 
+type SortDirectionValue string
+
+const (
+	AscDirection  SortDirectionValue = "asc"
+	DescDirection SortDirectionValue = "desc"
+)
+
 type Client struct {
 	// HTTP client used to communicate with the API.
 	client *retryablehttp.Client
