@@ -11,9 +11,9 @@ type RepositoriesService struct {
 }
 
 type Compare struct {
-	BaseCommit      *Commit
-	MergeBaseCommit *Commit
-	Commits         []*Commit
+	BaseCommit      *Commit   `json:"base_commit,omitempty"`
+	MergeBaseCommit *Commit   `json:"merge_base_commit,omitempty"`
+	Commits         []*Commit `json:"commits,omitempty"`
 	Files           []*struct {
 		SHA        string `json:"sha,omitempty"`
 		FileName   string `json:"filename,omitempty"`
@@ -25,7 +25,7 @@ type Compare struct {
 		RawURL     string `json:"raw_url,omitempty"`
 		ContentURL string `json:"content_url,omitempty"`
 		Patch      string `json:"patch,omitempty"`
-	}
+	} `json:"files,omitempty"`
 }
 
 func (s *RepositoriesService) Compare(owner, repo, base, head string) (*Compare, *Response, error) {
