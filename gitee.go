@@ -60,6 +60,7 @@ type Client struct {
 	Repositories    *RepositoriesService
 	RepositoryFiles *RepositoryFilesService
 	Tags            *TagsService
+	PullRequests    *PullRequestsService
 }
 
 type ListOptions struct {
@@ -114,6 +115,7 @@ func newClient(hc *retryablehttp.Client) (*Client, error) {
 	c.Repositories = &RepositoriesService{client: c}
 	c.RepositoryFiles = &RepositoryFilesService{client: c}
 	c.Tags = &TagsService{client: c}
+	c.PullRequests = &PullRequestsService{client: c}
 
 	return c, nil
 }
