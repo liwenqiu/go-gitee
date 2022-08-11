@@ -23,14 +23,14 @@ type Commit struct {
 	CommentsURL string `json:"comment_url"`
 	Commit      *struct {
 		Author *struct {
-			Name  string    `json:"name"`
+			Name  string     `json:"name"`
 			Date  *time.Time `json:"date"`
-			Email string    `json:"email"`
+			Email string     `json:"email"`
 		} `json:"author"`
 		Committer *struct {
-			Name  string    `json:"name"`
+			Name  string     `json:"name"`
 			Date  *time.Time `json:"date"`
-			Email string    `json:"email"`
+			Email string     `json:"email"`
 		} `json:"committer"`
 		Message string `json:"message"`
 		Tree    *struct {

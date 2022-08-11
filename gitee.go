@@ -1,10 +1,10 @@
 package gitee
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"net/url"
 	"sort"
@@ -61,6 +61,7 @@ type Client struct {
 	RepositoryFiles *RepositoryFilesService
 	Tags            *TagsService
 	PullRequests    *PullRequestsService
+	Users           *UsersService
 }
 
 type ListOptions struct {
@@ -116,6 +117,7 @@ func newClient(hc *retryablehttp.Client) (*Client, error) {
 	c.RepositoryFiles = &RepositoryFilesService{client: c}
 	c.Tags = &TagsService{client: c}
 	c.PullRequests = &PullRequestsService{client: c}
+	c.Users = &UsersService{client: c}
 
 	return c, nil
 }
@@ -206,8 +208,10 @@ type Response struct {
 }
 
 // newResponse creates a new Response for the provided http.Response.
-func newResponse(r *http.Response) *Response {
-	response := &Response{Response: r}
+func newResponse(r *http.Response, b []byte) *Response {
+	hresp := *r
+	hresp.Body = io.NopCloser(bytes.NewReader(b))
+	response := &Response{Response: &hresp}
 	response.populatePageValues()
 	return response
 }
@@ -239,20 +243,24 @@ func (c *Client) Do(req *retryablehttp.Request, v interface{}) (*Response, error
 	if err != nil {
 		return nil, err
 	}
-
 	defer resp.Body.Close()
 
-	response := newResponse(resp)
+	b, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
+	}
+	response := newResponse(resp, b)
 
 	err = CheckResponse(resp)
 	if err != nil {
 		return response, err
 	}
+
 	if v != nil {
 		if w, ok := v.(io.Writer); ok {
-			_, err = io.Copy(w, resp.Body)
+			_, err = io.Copy(w, bytes.NewReader(b))
 		} else {
-			err = json.NewDecoder(resp.Body).Decode(v)
+			err = json.Unmarshal(b, v)
 		}
 	}
 
@@ -283,7 +291,7 @@ func CheckResponse(r *http.Response) error {
 	}
 
 	errorResponse := &ErrorResponse{Response: r}
-	data, err := ioutil.ReadAll(r.Body)
+	data, err := io.ReadAll(r.Body)
 	if err == nil && data != nil {
 		errorResponse.Body = data
 

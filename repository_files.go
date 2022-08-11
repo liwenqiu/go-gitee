@@ -28,7 +28,7 @@ func (r File) String() string {
 }
 
 type GetFileOptions struct {
-	Ref *string `url:"ref,omitempty""`
+	Ref *string `url:"ref,omitempty"`
 }
 
 func (s *RepositoryFilesService) GetFile(owner, repo, path string, opts *GetFileOptions) (*File, *Response, error) {
@@ -73,14 +73,14 @@ type FileOperationResponse struct {
 	Commit *struct {
 		SHA    string `json:"sha"`
 		Author *struct {
-			Name  string    `json:"name"`
+			Name  string     `json:"name"`
 			Date  *time.Time `json:"date"`
-			Email string    `json:"email"`
+			Email string     `json:"email"`
 		} `json:"author"`
 		Committer *struct {
-			Name  string    `json:"name"`
+			Name  string     `json:"name"`
 			Date  *time.Time `json:"date"`
-			Email string    `json:"email"`
+			Email string     `json:"email"`
 		} `json:"committer"`
 		Message string `json:"message"`
 		Tree    *struct {
