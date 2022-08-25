@@ -15,7 +15,7 @@ type BranchRef struct {
 	Name          string     `json:"name"`
 	Commit        *CommitRef `json:"commit"`
 	Protected     bool       `json:"protected"`
-	ProtectionURL string     `json:"protected_url"`
+	ProtectionURL string     `json:"protection_url"`
 }
 
 func (br BranchRef) String() string {
@@ -81,7 +81,7 @@ type Branch struct {
 		} `json:"committer"`
 	} `json:"commit"`
 	Protected     bool   `json:"protected"`
-	ProtectionURL string `json:"protected_url"`
+	ProtectionURL string `json:"protection_url"`
 }
 
 func (b Branch) String() string {
@@ -103,5 +103,26 @@ func (s *BranchesService) GetBranch(owner, repo, branch string) (*Branch, *Respo
 		return nil, resp, err
 	}
 
+	return b, resp, err
+}
+
+func (s *BranchesService) CreateBranch(owner, repo, refs, branch_name string) (*Branch, *Response, error) {
+	u := fmt.Sprintf("repos/%s/%s/branches", pathEscape(owner), pathEscape(repo))
+	opt := struct {
+		Refs       string `json:"refs"`
+		BranchName string `json:"branch_name"`
+	}{
+		Refs:       refs,
+		BranchName: branch_name,
+	}
+	req, err := s.client.NewRequest(http.MethodPost, u, &opt)
+	if err != nil {
+		return nil, nil, err
+	}
+	b := new(Branch)
+	resp, err := s.client.Do(req, b)
+	if err != nil {
+		return nil, resp, err
+	}
 	return b, resp, err
 }

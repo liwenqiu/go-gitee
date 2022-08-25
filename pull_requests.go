@@ -52,3 +52,9 @@ func (s *PullRequestsService) ListPullRequestDiffs(opts *ListPullRequestDiffsOpt
 
 	return f, resp, nil
 }
+
+// TODO: CreatePullRequest
+// CreatePullRequest https://gitee.com/api/v5/swagger#/postV5ReposOwnerRepoPulls
+func (s *PullRequestsService) CreatePullRequest() (*Response, error) {
+	return nil, nil
+}
