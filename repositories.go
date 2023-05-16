@@ -136,9 +136,7 @@ type Repository struct {
 	Testers             []*GiteeUser `json:"testers"`
 	Status              *string      `json:"status"`
 	EmptyRepo           *bool        `json:"empty_repo"`
-	Programs            []*string    `json:"programs"`
 	Enterprise          *Enterprise  `json:"enterprise"`
-	Parent              *Repository  `json:"parent"`
 }
 
 type VisibilityValue string
