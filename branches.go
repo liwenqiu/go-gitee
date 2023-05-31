@@ -66,7 +66,7 @@ type Branch struct {
 		Author *struct {
 			AvatarURL string `json:"avatar_url"`
 			URL       string `json:"url"`
-			ID        int    `json:"id"`
+			ID        int64  `json:"id"`
 			Login     string `json:"login"`
 		} `json:"author"`
 		Parents []*struct {
@@ -76,7 +76,7 @@ type Branch struct {
 		Committer *struct {
 			AvatarURL string `json:"avatar_url"`
 			URL       string `json:"url"`
-			ID        int    `json:"id"`
+			ID        int64  `json:"id"`
 			Login     string `json:"login"`
 		} `json:"committer"`
 	} `json:"commit"`

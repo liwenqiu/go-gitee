@@ -33,7 +33,7 @@ type Diff struct {
 type ListPullRequestDiffsOptions struct {
 	Owner  string
 	Repo   string
-	Number int
+	Number int64
 }
 
 // ListPullRequestDiffs https://gitee.com/api/v5/swagger#/getV5ReposOwnerRepoPullsNumberFiles
