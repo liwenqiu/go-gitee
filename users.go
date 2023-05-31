@@ -11,7 +11,7 @@ type UsersService struct {
 }
 
 type GiteeUser struct {
-	ID                *int    `json:"id"`
+	ID                *int64  `json:"id"`
 	Login             *string `json:"login"`
 	Name              *string `json:"name"`
 	AvatarURL         *string `json:"avatar_url"`

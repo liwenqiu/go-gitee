@@ -47,7 +47,7 @@ func (s *RepositoriesService) Compare(owner, repo, base, head string) (*Compare,
 }
 
 type Namespace struct {
-	ID      *int    `json:"id"`
+	ID      *int64  `json:"id"`
 	Type    *string `json:"type"`
 	Name    *string `json:"name"`
 	Path    *string `json:"path"`
@@ -61,7 +61,7 @@ type Permission struct {
 }
 
 type Enterprise struct {
-	ID      *int    `json:"id"`
+	ID      *int64  `json:"id"`
 	Type    *string `json:"type"`
 	Name    *string `json:"name"`
 	Path    *string `json:"path"`
@@ -69,7 +69,7 @@ type Enterprise struct {
 }
 
 type Repository struct {
-	ID                  *int         `json:"id"`
+	ID                  *int64       `json:"id"`
 	FullName            *string      `json:"full_name"`
 	HumanName           *string      `json:"human_name"`
 	URL                 *string      `json:"url"`

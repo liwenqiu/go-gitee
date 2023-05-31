@@ -39,7 +39,7 @@ type Commit struct {
 		} `json:"tree"`
 	} `json:"commit"`
 	Author *struct {
-		ID                int    `json:"id"`
+		ID                int64  `json:"id"`
 		Login             string `json:"login"`
 		Name              string `json:"name"`
 		AvatarURL         string `json:"avatar_url"`
@@ -58,7 +58,7 @@ type Commit struct {
 		Type              string `json:"type"`
 	} `json:"author"`
 	Committer *struct {
-		ID                int    `json:"id"`
+		ID                int64  `json:"id"`
 		Login             string `json:"login"`
 		Name              string `json:"name"`
 		AvatarURL         string `json:"avatar_url"`
