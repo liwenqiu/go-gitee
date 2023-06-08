@@ -38,7 +38,7 @@ type ListPullRequestDiffsOptions struct {
 
 // ListPullRequestDiffs https://gitee.com/api/v5/swagger#/getV5ReposOwnerRepoPullsNumberFiles
 func (s *PullRequestsService) ListPullRequestDiffs(opts *ListPullRequestDiffsOptions) ([]*Diff, *Response, error) {
-	url := "repos/" + opts.Owner + "/" + opts.Repo + "/pulls/" + strconv.Itoa(opts.Number) + "/files"
+	url := "repos/" + opts.Owner + "/" + opts.Repo + "/pulls/" + strconv.Itoa(int(opts.Number)) + "/files"
 	req, err := s.client.NewRequest(http.MethodGet, url, opts)
 	if err != nil {
 		return nil, nil, err
