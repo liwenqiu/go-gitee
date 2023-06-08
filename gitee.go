@@ -251,7 +251,7 @@ func (c *Client) Do(req *retryablehttp.Request, v interface{}) (*Response, error
 	}
 	response := newResponse(resp, b)
 
-	err = CheckResponse(resp)
+	err = CheckResponse(response.Response)
 	if err != nil {
 		return response, err
 	}
